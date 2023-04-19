@@ -1,62 +1,11 @@
-function sum(a, b) {
-  return a + b;
-}
-
-describe('sum', () => {
-  it('adds 1 + 2 to equal 3', () => {
-    expect(sum(1, 2)).toBe(3);
-  });
-})
-
-// Как встроенные fetch
-// Так и подключить из пакета
-// node-fetch - это сторонний пакеты
-// А в nodeJS подвезли встроенный fetch
-// console.log(fetch);
-
-// Как установить пакет?
-// Использовать npm - это утилита для работы с пакетами
-// node package manager
-// npm install node-fetch - устанавливается пакет
-// dependencies и devDependencies - 
-
-// Это не JS
-// Это встроенные пакет
-
-// mjs - ecma script модули
-
-
-// Два типа модулей в NodeJS
-// CommonJS - это изначальная модульная система NodeJS.
-// ECMA Script модули - это ES Module, современный способ.
-
-// ECMA Script модули - JS frontend.
-
-// Когда мы создаем проект, то умолчанию CommonJS
-// require('node-fetch') - подключаем модуль node-fetch
-// module.exports - что отдаем наружу.
-
-
-
-
-// 500
-// На прошлом занятии мы разбирали простые типы + функции.
-// Сложные типы - это объекты.
-// Массив - это подтип объекта.
-
-// Объект от массив.
-// 1. Объект - это ключи-значение. Обращаемся по строковому литералу
-// 2. Массив - это индекс-значение. Обращаемся по индексу(числу).
-// 3. Map и Set. 
-
-// Чем ещё отличается.
-// В массиве порядок имеет значение.
-
 const obj = {
   name: 'Nik',
   age: 33,
   skills: ['javascript', 'typescript']
 }; // Это объект
+
+// console.log(obj.name);
+// console.log(obj.skills);
 
 const array = [
   1,
@@ -68,25 +17,167 @@ const array = [
   21
 ] // Число фибоначчи
 
-console.log(array[0]) // 1
-console.log(array[3]) // 5
+// console.log(array[0]) // 1
+// console.log(array[3]) // 5
+
+// Массив в JavaScript — это упорядоченный список элементов с указанным индексом (ключом к ним).
+
+// 1. Как нам в конце добавить новое число?
+
+// array.push(34) // push - толкать. Добавить в конце число
+
+// 2. Как нам узнать длинну массива?
+
+// console.log(array.length) // Длинна массива.
+
+// push - это метод массива(встроенный). Просто функция.
+// length - это свойства массива(встроенный). Просто переменная.
+
+// 3. Какие ещё методы есть?
+
+// // Добавлять в начало
+// array.unshift(-1000);
+
+// console.log(array);
+
+// // Убираем из конца. 
+// array.pop();
+
+// console.log(array);
+
+// // Убираем из начала. 
+// array.shift();
+
+// console.log(array);
+
+// 4. Ещё методы.
+
+// Найти что-то
+const fiveNumber = array.find(value => value === 500);
+
+// console.log(fiveNumber) // Или значение или undefined
+
+// Отфильтровать
+const onlyOddNumber = array.filter(value => value % 2);
+
+// console.log(onlyOddNumber)
+
+// Преобразовать
+const multiHundred = array.map(value => value * 100);
+
+// console.log(multiHundred)
+
+// reduce - это сокращать. Функция трансформатор массивов.
+// array - object
+// sum array
+// 1,2,3,5,8 => 17.
+// 1,2,3,5,8 => { 1: 1, 2: 2, 3: 3, 5: 5, 8: 8 };
+
+// console.log(sumArray([1, 2, 3]));
+
+// array
+
+// const ourResult = array.reduce((result, currentValue) => {
+//   // Код
+
+//   return result;
+// }, initValue);
+
+function sumArray(array) {
+  return array.reduce((res, value) => {
+    res = res + value; // на каждой итерации суммирую значения.
+
+    return res;
+  }, 0);
+}
+
+function arrayToObject(array) {
+  return array.reduce((res, value) => {
+    res[value] = value;
+
+    return res;
+  }, {});
+}
+
+// console.log(arrayToObject([1, 2, 3, 5, 8]));
+// { '1': 1, '2': 2, '3': 3, '5': 5, '8': 8 }
+
+// array.reduce - это метод массива, у него два аргумента
+
+// 1 Аргумент - это функция которая выполняется на каждом проходе цикла.
+// Эта функция-аргумент принимает 4 аргумента
+// Первый - это накопитель результата. Остальные значение массива, индекс и все массива
+// Второй аргумент - это начальное значение накопителя результата.
+
+// Циклы обычные циклы
+
+// underscore и lodash
+// for и while
+
+// Это тоже перебор массива
+// for (let index = 0; index < array.length; index++) {
+//   console.log('индекс:', index, 'значение:', array[index]);
+// }
+
+// // Есть вариация for
+
+// for (let value of array) {
+//   console.log('значение:', value);
+// }
+
+// // while
+
+// // Условия входа в цикл
+// let index = 0;
+
+// // Условия проверки
+// while(index < array.length) {
+//   console.log('индекс:', index, 'значение:', array[index]);
+  
+//   // код в конце цикла.
+//   index++;
+// }
 
 
+const user = {
+  name: 'Nik', // ключ - это свойство объекта
+  surname: 'Lapshin',
+  'some-key': 'value',
+  showFullName() { // это называется метод.
+    console.log(`${this.name} ${this.surname}`);
+  }
+}
 
+// Добавляем свойство
+user.age = 33;
 
+// изменяем свойство
+user.name = 'New nik';
 
+user['some-key']
 
+// удаляем
+delete user.age;
 
+user.showFullName();
 
+// 1 Способ
+// Использовать for in
 
+for (const key in user) {
+  // console.log(key, user[key]);
+}
 
+// 2 Способ
+// Преобразовать в массив и работать как с массив
 
+// Получить массив ключей
+console.log(Object.keys(user)); // массив ключей
+console.log(Object.values(user)); // массив значенй
+console.log(Object.entries(user)); // массив ключ-значение
 
-
-
-
-
-
+// JSON - это объект?
+// HTML - это формат данных, Markdown, XML
 
 
 // // mock и stub
